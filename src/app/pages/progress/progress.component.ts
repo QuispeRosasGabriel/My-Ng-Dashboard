@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProgressComponent implements OnInit {
 
   title: string = "Barra de Progreso"
-  porcentaje: number = 50;
+  porcentaje1: number = 20;
+  porcentaje2: number = 30;
   minimo: number = 0;
 
 
@@ -16,7 +17,6 @@ export class ProgressComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
 
 }
