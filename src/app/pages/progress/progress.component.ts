@@ -17,14 +17,6 @@ export class ProgressComponent implements OnInit {
   ngOnInit() {
   }
 
-  cambiarValor(valor) {
-    if (this.porcentaje >= 100) {
-      return;
-    }
-    if (this.porcentaje <= 0 && valor < 0) {
-      return;
-    }
-    this.porcentaje = this.porcentaje + valor;
-  }
+
 
 }
