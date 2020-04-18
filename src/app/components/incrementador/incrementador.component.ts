@@ -15,9 +15,22 @@ export class IncrementadorComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit() { }
 
+  onChanges(newValue: number) {
+    console.log(event);
+
+    if (newValue >= 100) {
+      this.porcentaje = 100;
+    } else if (newValue <= 0) {
+      this.porcentaje = 0
+    } else {
+      this.porcentaje = newValue;
+    }
+    this.cambioValor.emit(this.porcentaje)
   }
+
+
 
   cambiarValor(valor) {
     if (this.porcentaje >= 100) {
