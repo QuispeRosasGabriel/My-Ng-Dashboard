@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-incrementador',
@@ -7,10 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class IncrementadorComponent implements OnInit {
 
+  @ViewChild("txtporcentaje") txtPorcentaje: ElementRef;
+
   @Input() leyenda: string;
   @Input() porcentaje: number = 50;
 
   @Output() cambioValor: EventEmitter<number> = new EventEmitter();
+
 
   constructor() {
   }
@@ -18,8 +21,8 @@ export class IncrementadorComponent implements OnInit {
   ngOnInit() { }
 
   onChanges(newValue: number) {
-    console.log(event);
 
+    // let elementoHtml: any = document.getElementsByName("porcentaje")[0];
     if (newValue >= 100) {
       this.porcentaje = 100;
     } else if (newValue <= 0) {
@@ -27,6 +30,8 @@ export class IncrementadorComponent implements OnInit {
     } else {
       this.porcentaje = newValue;
     }
+    // elementoHtml.value = Number(this.porcentaje)
+    this.txtPorcentaje.nativeElement.value = this.porcentaje
     this.cambioValor.emit(this.porcentaje)
   }
 
@@ -43,6 +48,6 @@ export class IncrementadorComponent implements OnInit {
     }
     this.porcentaje = this.porcentaje + valor;
     this.cambioValor.emit(this.porcentaje)
-
+    this.txtPorcentaje.nativeElement.focus();
   }
 }
