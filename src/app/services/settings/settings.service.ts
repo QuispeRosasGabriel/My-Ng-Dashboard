@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Ajustes } from "../interfaces/ajustes"
+import { Ajustes } from "../../interfaces/ajustes"
 import { DOCUMENT } from '@angular/platform-browser';
 
 @Injectable()
