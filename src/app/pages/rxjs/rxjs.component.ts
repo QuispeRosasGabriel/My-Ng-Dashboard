@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { retry, map, filter } from "rxjs/operators"
+import { retry, map, filter, observeOn } from "rxjs/operators"
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styles: []
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy {
+
+  subscription: Subscription;
 
   constructor() {
 
-    this.regresaObservable()
+    this.subscription = this.regresaObservable()
       .subscribe(data => console.log(data),
         error => console.error(error),
         () => console.log("observador termino")
@@ -19,6 +22,10 @@ export class RxjsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   regresaObservable(): Observable<any> {
