@@ -29,7 +29,6 @@ export class UsuarioService {
   }
 
   guardarStorage(id: string, token: string, usuario: Usuario) {
-
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
@@ -39,7 +38,6 @@ export class UsuarioService {
   }
 
   login(usuario: Usuario, recordar: boolean = false) {
-
     if (recordar) {
       localStorage.setItem('email', usuario.email);
     } else {
@@ -54,7 +52,6 @@ export class UsuarioService {
 
         return true;
       });
-
   }
 
   crearUsuario(usuario: Usuario) {

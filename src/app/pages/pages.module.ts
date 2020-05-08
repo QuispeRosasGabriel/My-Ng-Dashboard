@@ -3,6 +3,7 @@ import { FormsModule } from "@angular/forms"
 import { PAGES_ROUTES } from './pages.routes';
 
 import { SharedModule } from '../shared/shared.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 import { PagesComponent } from './pages.component';
 
@@ -37,7 +38,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     SharedModule,
     PAGES_ROUTES,
     FormsModule,
-    CommonModule
+    CommonModule,
+    PipesModule
   ]
 })
 export class PagesModule { }
