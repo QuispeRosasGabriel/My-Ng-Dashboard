@@ -4,19 +4,21 @@ import { UsuarioService } from '../usuario/usuario.service';
 
 @Injectable()
 export class LoginGuardGuard implements CanActivate {
-  constructor(private _usuarioService: UsuarioService,
-    private router: Router) { }
+  constructor(
+    public _usuarioService: UsuarioService,
+    public router: Router
+  ) { }
 
   canActivate() {
 
     if (this._usuarioService.estaLogueado()) {
-      console.log("paso el guard");
+      console.log('PASO EL GUARD');
       return true;
-    }
-    else {
-      console.log("No paso");
-      this.router.navigate(["/login"])
+    } else {
+      console.log('Bloqueado por guard');
+      this.router.navigate(['/login']);
       return false;
     }
+
   }
 }
