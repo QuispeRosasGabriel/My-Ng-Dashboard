@@ -12,13 +12,17 @@ declare function init_plugins()
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  email: string;
   recuerdame: boolean = false;
   constructor(private router: Router,
     private _usuarioService: UsuarioService) { }
 
   ngOnInit() {
     init_plugins();
+    this.email = localStorage.getItem("email") || "";
+    if (this.email.length > 0) {
+      this.recuerdame === true;
+    }
   }
 
   ingresar(formulario: NgForm) {
@@ -30,10 +34,7 @@ export class LoginComponent implements OnInit {
       formulario.value.password);
 
     this._usuarioService.login(usuario, formulario.value.recuerdame)
-      .subscribe(resp => {
-        console.log(resp);
-
-      })
+      .subscribe(correcto => this.router.navigate(["/dashboard"]))
   }
 
 }
