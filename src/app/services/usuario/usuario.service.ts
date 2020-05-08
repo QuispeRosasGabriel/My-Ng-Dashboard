@@ -7,8 +7,11 @@ import swal from 'sweetalert';
 
 @Injectable()
 export class UsuarioService {
+  usuario: Usuario;
+  token: string;
 
   constructor(private http: HttpClient) {
+    this.cargarStorage();
   }
 
   login(usuario: Usuario, recordar: boolean = false) {
@@ -25,6 +28,20 @@ export class UsuarioService {
         localStorage.setItem("usuario", JSON.stringify(resp.usuario));
         return true;
       })
+  }
+
+  estaLogueado() {
+    return (this.token.length > 5) ? true : false;
+  }
+
+  cargarStorage() {
+    if (localStorage.getItem("token")) {
+      this.token = localStorage.getItem("token");
+      this.usuario = JSON.parse(localStorage.getItem("usuario"))
+    } else {
+      this.token = "";
+      this.usuario = null;
+    }
   }
 
   crearUsuario(usuario: Usuario) {
