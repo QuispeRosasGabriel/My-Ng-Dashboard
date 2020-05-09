@@ -4,13 +4,15 @@ import { HttpClient } from "@angular/common/http"
 import { URL_SERVICIOS } from '../../config/constants';
 import "rxjs/add/operator/map"
 import swal from 'sweetalert';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 @Injectable()
 export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private _subirArchivoService: SubirArchivoService) {
     this.cargarStorage();
   }
 
@@ -72,6 +74,19 @@ export class UsuarioService {
       swal("Usuario Actualizado", usuario.nombre, "success")
       return true;
     })
+  }
+
+  cambiarImagen(archivo: File, id: string) {
+    this._subirArchivoService.subirArchivo(archivo, "usuarios", id)
+      .then((resp: any) => {
+        this.usuario.img = resp.usuario.img
+        swal("Imagen Actualizada", this.usuario.nombre, "success");
+        this.guardarStorage(id, this.token, this.usuario);
+      })
+      .catch(err => {
+        swal("Ups, algo salió mal", err, "warning");
+
+      })
   }
 
 }

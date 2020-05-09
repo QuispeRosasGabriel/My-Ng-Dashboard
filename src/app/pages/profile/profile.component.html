@@ -59,10 +59,12 @@
         <h4 class="card-title">Perfil del usuario</h4>
         <h6 class="card-subtitle">nombre usuario</h6>
         <img src="" alt="" />
-        <input type="file" />
+        <input type="file" (change)="seleccionImagen($event.target.files[0])" />
         <br />
         <br />
         <button
+          (click)="cambiarImagen()"
+          [disabled]="!imagenSubir"
           type="submit"
           class="btn btn-block btn-primary waves-effect waves-light"
         >

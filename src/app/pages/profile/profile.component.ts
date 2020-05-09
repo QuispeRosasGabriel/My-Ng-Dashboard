@@ -10,6 +10,8 @@ import swal from 'sweetalert';
 })
 export class ProfileComponent implements OnInit {
   usuario: Usuario;
+  imagenSubir: File;
+
   constructor(private _usuarioService: UsuarioService) {
     this.usuario = this._usuarioService.usuario
   }
@@ -25,4 +27,16 @@ export class ProfileComponent implements OnInit {
       .subscribe((resp: any) => { })
   }
 
+  seleccionImagen(archivo: File) {
+    if (!archivo) {
+      this.imagenSubir = null;
+      return;
+    }
+
+    this.imagenSubir = archivo
+  }
+
+  cambiarImagen() {
+    this._usuarioService.cambiarImagen(this.imagenSubir, this.usuario._id)
+  }
 }
