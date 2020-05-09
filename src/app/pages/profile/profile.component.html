@@ -4,15 +4,22 @@
       <div class="card-body">
         <h4 class="card-title">Perfil del usuario</h4>
         <h6 class="card-subtitle">nombre usuario</h6>
-        <form class="form p-t-20">
+        <form
+          (ngSubmit)="guardar(form.value)"
+          ngNativeValidate
+          #form="ngForm"
+          class="form p-t-20"
+        >
           <div class="form-group">
-            <label for="exampleInputuname2">User Name</label>
+            <label for="exampleInputuname2">Nombre de usuario</label>
             <div class="input-group">
               <input
+                [ngModel]="usuario.nombre"
+                name="nombre"
                 type="text"
                 class="form-control"
-                id="exampleInputuname2"
-                placeholder="Username"
+                placeholder="Nombre de usuario"
+                required
               />
               <div class="input-group-addon"><i class="ti-user"></i></div>
             </div>
@@ -21,10 +28,12 @@
             <label for="exampleInputEmail2">Email address</label>
             <div class="input-group">
               <input
+                [ngModel]="usuario.email"
+                name="email"
                 type="email"
                 class="form-control"
-                id="exampleInputEmail2"
-                placeholder="Enter email"
+                placeholder="Correo del usuario"
+                required
               />
               <div class="input-group-addon"><i class="ti-email"></i></div>
             </div>
