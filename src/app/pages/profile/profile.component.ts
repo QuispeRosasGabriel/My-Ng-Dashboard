@@ -11,6 +11,7 @@ import swal from 'sweetalert';
 export class ProfileComponent implements OnInit {
   usuario: Usuario;
   imagenSubir: File;
+  imagenTemp: string;
 
   constructor(private _usuarioService: UsuarioService) {
     this.usuario = this._usuarioService.usuario
@@ -33,6 +34,16 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
+    if (archivo.type.indexOf("image") < 0) {
+      swal("Error", "Solo puede subir imágenes", "error");
+      this.imagenSubir = null
+      return;
+    }
+
+    let reader = new FileReader();
+    let urlImagenTemp = reader.readAsDataURL(archivo)
+
+    reader.onloadend = () => this.imagenTemp = reader.result
     this.imagenSubir = archivo
   }
 
