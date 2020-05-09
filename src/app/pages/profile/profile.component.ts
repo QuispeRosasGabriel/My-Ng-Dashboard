@@ -9,7 +9,9 @@ import { UsuarioService } from '../../services/service.index';
 })
 export class ProfileComponent implements OnInit {
   usuario: Usuario;
-  constructor() { }
+  constructor(private _usuarioService: UsuarioService) {
+    this.usuario = this._usuarioService.usuario
+  }
 
   ngOnInit() {
   }
