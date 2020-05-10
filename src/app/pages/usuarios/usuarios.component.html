@@ -49,8 +49,9 @@
               <td>
                 <img
                   [src]="usuario.img | imagen"
-                  class="img-50 img-circle"
-                  alt=""
+                  class="img-50 img-circle pointer"
+                  (click)="mostrarModal(usuario._id)"
+                  [alt]="usuario.nombre"
                 />
               </td>
               <td>
