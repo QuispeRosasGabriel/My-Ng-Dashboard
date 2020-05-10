@@ -60,7 +60,16 @@
                 {{ usuario.nombre }}
               </td>
               <td>
-                {{ usuario.role }}
+                <!-- {{ usuario.role }} -->
+                <select
+                  name="role"
+                  id=""
+                  class="form-control"
+                  [(ngModel)]="usuario.role"
+                >
+                  <option value="ADMIN_ROLE">ADMIN_ROLE</option>
+                  <option value="USER_ROLE">USER_ROLE</option>
+                </select>
               </td>
               <td>
                 <label for="" *ngIf="usuario.google" class="label label-danger"
@@ -71,7 +80,10 @@
                 >
               </td>
               <td>
-                <button class="btn btn-primary">
+                <button
+                  class="btn btn-primary"
+                  (click)="guardarUsuario(usuario)"
+                >
                   <i class="fa fa-save"></i>
                 </button>
                 <button class="btn btn-danger" (click)="borrarUsuario(usuario)">

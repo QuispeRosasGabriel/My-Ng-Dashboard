@@ -68,12 +68,16 @@ export class UsuarioService {
   actualizarUsuario(usuario: Usuario) {
     let url = URL_SERVICIOS + "/usuario/" + usuario._id
     url += "?token=" + this.token;
-    return this.http.put(url, usuario).map((resp: any) => {
-      let usuarioDB: Usuario = resp.usuario
-      this.guardarStorage(usuarioDB._id, this.token, usuarioDB)
-      swal("Usuario Actualizado", usuario.nombre, "success")
-      return true;
-    })
+    return this.http.put(url, usuario)
+      .map((resp: any) => {
+        if (usuario._id === this.usuario._id) {
+          let usuarioDB: Usuario = resp.usuario
+          this.guardarStorage(usuarioDB._id, this.token, usuarioDB)
+        }
+
+        swal("Usuario Actualizado", usuario.nombre, "success")
+        return true;
+      })
   }
 
   cambiarImagen(archivo: File, id: string) {
