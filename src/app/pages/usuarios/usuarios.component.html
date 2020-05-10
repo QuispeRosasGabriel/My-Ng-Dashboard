@@ -3,6 +3,7 @@
     <div class="card">
       <div class="card-body">
         <input
+          (keyup)="buscarUsuario(input.value)"
           type="text"
           class="form-control"
           placeholder="Buscar Usuario..."
@@ -13,7 +14,7 @@
   </div>
 </div>
 
-<div class="row animated fadeIn">
+<div *ngIf="cargando" class="row animated fadeIn">
   <div class="col-sm-12">
     <div class="alert alert-warning text-center">
       <strong>Cargando...</strong>
@@ -25,7 +26,7 @@
   </div>
 </div>
 
-<div class="row animated fadeIn">
+<div *ngIf="!cargando" class="row animated fadeIn">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -45,7 +46,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let usuario of usuarios">
-              <td></td>
+              <td>
+                <img
+                  [src]="usuario.img | imagen"
+                  class="img-50 img-circle"
+                  alt=""
+                />
+              </td>
               <td>
                 {{ usuario.email }}
               </td>
@@ -56,8 +63,12 @@
                 {{ usuario.role }}
               </td>
               <td>
-                <label for="" class="label label-danger">Google</label>
-                <label for="" class="label label-info">Normal</label>
+                <label for="" *ngIf="usuario.google" class="label label-danger"
+                  >Google</label
+                >
+                <label *ngIf="!usuario.google" for="" class="label label-info"
+                  >Normal</label
+                >
               </td>
               <td>
                 <button class="btn btn-primary">
