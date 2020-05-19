@@ -1,3 +1,52 @@
-<p>
-  medicos works!
-</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input
+          #input
+          (keyup)="buscarMedico(input.value)"
+          type="text"
+          class="form-control"
+          placeholder="Buscar médico..."
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-right">
+          <button
+            (click)="crearMedico()"
+            type="button"
+            class="btn waves-effect waves-light btn-rounded btn-success"
+          >
+            <i class="fa fa-plus"></i> Crear Médico
+          </button>
+        </div>
+        <h3 class="card-title">Médicos registrados ( <small>3</small> )</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Médico</th>
+              <th>Hospital</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
