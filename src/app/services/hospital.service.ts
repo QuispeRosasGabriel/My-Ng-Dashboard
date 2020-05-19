@@ -32,7 +32,7 @@ export class HospitalService {
   borrarHospital(id: string) {
     let url = URL_SERVICIOS + "/hospital/" + id
     url += "?token=" + this._usuarioService.token;
-    this.http.delete(url).map(resp => {
+    return this.http.delete(url).map(resp => {
       swal("Hospital borrado", "Eliminado correctamente", "success")
     })
   }
@@ -44,17 +44,23 @@ export class HospitalService {
       .map((resp: any) => { resp.hospital })
   }
 
+
   buscarHospital(termino: string) {
-    let url = URL_SERVICIOS + "/busqueda/coleccion/hospitales/" + termino;
+    let url = URL_SERVICIOS + '/busqueda/coleccion/hospitales/' + termino;
     return this.http.get(url)
-      .map((resp: any) => { resp.hospitales })
+      .map((resp: any) => resp.hospitales);
+
   }
+
 
   actualizarHospital(hospital: Hospital) {
     let url = URL_SERVICIOS + "/hospital/" + hospital._id;
     url += "?token=" + this._usuarioService.token;
     return this.http.put(url, hospital)
-      .map((resp: any) => { resp.hospital })
+      .map((resp: any) => {
+        swal("Hospital Actualizado", hospital.nombre, "success")
+        resp.hospital
+      })
 
   }
 

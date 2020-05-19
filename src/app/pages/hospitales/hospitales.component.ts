@@ -21,8 +21,24 @@ export class HospitalesComponent implements OnInit {
     this._hospitalService.cargarHospitales()
       .subscribe(hospitales => { this.hospitales = hospitales })
   }
-  guardarHospital(hospital: Hospital) { }
 
-  borrarHospital(hospital: Hospital) { }
+  buscarHospital(termino: string) {
+    if (termino.length <= 0) {
+      this.cargarHospitales();
+      return;
+    }
+    this._hospitalService.buscarHospital(termino)
+      .subscribe((hospitales: any) => this.hospitales = hospitales);
+  }
+
+  guardarHospital(hospital: Hospital) {
+    this._hospitalService.actualizarHospital(hospital)
+      .subscribe(resp => { })
+  }
+
+  borrarHospital(hospital: Hospital) {
+    this._hospitalService.borrarHospital(hospital._id)
+      .subscribe(() => { this.cargarHospitales() })
+  }
 
 }
