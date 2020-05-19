@@ -19,7 +19,7 @@ export class HospitalesComponent implements OnInit {
 
   cargarHospitales() {
     this._hospitalService.cargarHospitales()
-      .subscribe(hospitales => { this.hospitales })
+      .subscribe(hospitales => { this.hospitales = hospitales })
   }
   guardarHospital(hospital: Hospital) { }
 

@@ -41,12 +41,12 @@
             <tr *ngFor="let hospital of hospitales">
               <td>
                 <img
-                  src="hospital|imagen:'hospital'"
+                  src="hospital.img |imagen:'hospital'"
                   alt=""
                   class="img-50 img-circle pointer"
                 />
               </td>
-              <td>Nombre del hospital</td>
+              <td>{{ hospital.nombre }}</td>
               <td>
                 <button
                   class="btn btn-primary"
