@@ -49,7 +49,15 @@
                   class="img-50 img-circle pointer"
                 />
               </td>
-              <td>{{ hospital.nombre }}</td>
+              <td>
+                <input
+                  [(ngModel)]="hospital.nombre"
+                  name="nombre"
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre del hospital"
+                />
+              </td>
               <td>
                 <button
                   class="btn btn-primary"
