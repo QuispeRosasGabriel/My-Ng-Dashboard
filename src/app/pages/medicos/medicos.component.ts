@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MedicoService } from '../../services/service.index';
+import { Medico } from '../../models/medico.model';
 
 @Component({
   selector: 'app-medicos',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedicosComponent implements OnInit {
 
-  constructor() { }
+  medicos: Medico[] = [];
+  constructor(private _medicoService: MedicoService) { }
 
   ngOnInit() {
+    this.cargarMedidcos()
+  }
+
+  cargarMedidcos() {
+    this._medicoService.cargarMedicos()
+      .subscribe(medicos => { this.medicos = medicos })
   }
 
 }

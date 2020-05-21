@@ -16,6 +16,7 @@ export class MedicoService {
     return this.http.get(url)
       .map((resp: any) => {
         this.totalMedicos = resp.total
+
         return resp.medicos
       }
       )

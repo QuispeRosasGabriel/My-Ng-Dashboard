@@ -27,7 +27,10 @@
             <i class="fa fa-plus"></i> Crear Médico
           </button>
         </div>
-        <h3 class="card-title">Médicos registrados ( <small>3</small> )</h3>
+        <h3 class="card-title">
+          Médicos registrados (
+          <small>{{ _medicoService.totalMedicos }}</small> )
+        </h3>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -38,11 +41,28 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr *ngFor="let medico of medicos">
+              <td>
+                <img
+                  [src]="medico.img | imagen: 'medico'"
+                  class="img-50 img-circle"
+                  alt=""
+                />
+              </td>
+              <td>
+                {{ medico.nombre }}
+              </td>
+              <td>
+                {{ medico.hospital }}
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="editarMedico(medico)">
+                  <i class="fa fa-save"></i>
+                </button>
+                <button class="btn btn-danger" (click)="borrarMedico(medico)">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
