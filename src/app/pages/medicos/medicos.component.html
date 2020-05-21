@@ -20,7 +20,7 @@
       <div class="card-body">
         <div class="text-right">
           <button
-            (click)="crearMedico()"
+            [routerLink]="['/medico', 'nuevo']"
             type="button"
             class="btn waves-effect waves-light btn-rounded btn-success"
           >
@@ -56,8 +56,11 @@
                 {{ medico.hospital }}
               </td>
               <td>
-                <button class="btn btn-primary" (click)="editarMedico(medico)">
-                  <i class="fa fa-save"></i>
+                <button
+                  class="btn btn-primary"
+                  [routerLink]="['/medico', medico._id]"
+                >
+                  <i class="fa fa-edit"></i>
                 </button>
                 <button class="btn btn-danger" (click)="borrarMedico(medico)">
                   <i class="fa fa-trash-o"></i>
