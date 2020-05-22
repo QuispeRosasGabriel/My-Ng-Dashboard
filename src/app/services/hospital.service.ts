@@ -20,13 +20,10 @@ export class HospitalService {
       })
   }
 
-
   obtenerHospital(id: string) {
-    let url = URL_SERVICIOS + "/hospital/" + id
+    let url = URL_SERVICIOS + '/hospital/' + id;
     return this.http.get(url)
-      .map((resp: any) => {
-        resp.hospital
-      })
+      .map((resp: any) => resp.hospital);
   }
 
   borrarHospital(id: string) {

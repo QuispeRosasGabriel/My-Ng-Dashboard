@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/constants';
 import { UsuarioService } from '../usuario/usuario.service';
 import swal from 'sweetalert';
+import { Medico } from '../../models/medico.model';
 
 
 @Injectable()
@@ -37,6 +38,16 @@ export class MedicoService {
         swal("Medico Borrado", "Medico borrado correctamente", "success")
 
         return resp;
+      })
+  }
+
+  guardarMedico(medico: Medico) {
+    let url = URL_SERVICIOS + "/medico";
+    url += "?token=" + this._usuarioService.token;
+    return this.http.post(url, medico)
+      .map((resp: any) => {
+        swal("Medico creado", medico.nombre, "success")
+        return resp.medico;
       })
   }
 
