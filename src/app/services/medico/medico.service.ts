@@ -51,4 +51,12 @@ export class MedicoService {
       })
   }
 
+  cargarMedico(id: string) {
+    let url = URL_SERVICIOS + "/medico/" + id;
+    return this.http.get(url)
+      .map((resp: any) => {
+        return resp.medico;
+      })
+  }
+
 }
