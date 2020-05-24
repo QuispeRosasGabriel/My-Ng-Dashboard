@@ -71,6 +71,7 @@ export class UsuarioService {
 
     this.router.navigate(["/login"]);
   }
+
   crearUsuario(usuario: Usuario) {
     let url = URL_SERVICIOS + "/usuario"
     return this.http.post(url, usuario)

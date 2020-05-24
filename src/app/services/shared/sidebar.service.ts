@@ -6,7 +6,9 @@ export class SidebarService {
 
   menu: any = [];
   constructor(private _usuarioService: UsuarioService) {
-    this.menu = this._usuarioService.menu
   }
 
+  cargarMenu() {
+    this.menu = this._usuarioService.menu
+  }
 }
