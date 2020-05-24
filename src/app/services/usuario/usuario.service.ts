@@ -3,6 +3,8 @@ import { Usuario } from '../../models/usuario.model';
 import { HttpClient } from "@angular/common/http"
 import { URL_SERVICIOS } from '../../config/constants';
 import "rxjs/add/operator/map"
+import "rxjs/add/operator/catch"
+import { Observable } from 'rxjs/Observable';
 import swal from 'sweetalert';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 import { Router } from '@angular/router';
@@ -35,7 +37,6 @@ export class UsuarioService {
   }
 
   guardarStorage(id: string, token: string, usuario: Usuario, menu: any) {
-
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
@@ -57,9 +58,16 @@ export class UsuarioService {
     return this.http.post(url, usuario)
       .map((resp: any) => {
         this.guardarStorage(resp.id, resp.token, resp.usuario, resp.menu);
-
         return true;
-      });
+      }).catch(err => {
+        //controlando errores por status code y mensaje
+        swal("Error", err.error.mensaje, "warning");
+        // console.log(err.status);
+        // console.log(err.error.mensaje);
+
+        return Observable.throw(err)
+      })
+
   }
 
   logout() {
@@ -78,6 +86,9 @@ export class UsuarioService {
       .map((resp: any) => {
         swal("Usuario creado", usuario.email, "success")
         resp.usuario
+      }).catch(err => {
+        swal(err.error.mensaje, err.error.errors.message, "error")
+        return Observable.throw(err);
       })
   }
 
@@ -93,6 +104,10 @@ export class UsuarioService {
 
         swal("Usuario Actualizado", usuario.nombre, "success")
         return true;
+      })
+      .catch(err => {
+        swal(err.error.mensaje, err.error.errors.message, "error")
+        return Observable.throw(err);
       })
   }
 
