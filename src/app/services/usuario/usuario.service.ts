@@ -5,6 +5,7 @@ import { URL_SERVICIOS } from '../../config/constants';
 import "rxjs/add/operator/map"
 import swal from 'sweetalert';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UsuarioService {
@@ -13,7 +14,7 @@ export class UsuarioService {
   menu: any[] = [];
 
   constructor(private http: HttpClient,
-    private _subirArchivoService: SubirArchivoService) {
+    private _subirArchivoService: SubirArchivoService, private router: Router) {
     this.cargarStorage();
   }
 
@@ -61,6 +62,15 @@ export class UsuarioService {
       });
   }
 
+  logout() {
+    this.usuario = null;
+    this.token = "";
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("menu");
+
+    this.router.navigate(["/login"]);
+  }
   crearUsuario(usuario: Usuario) {
     let url = URL_SERVICIOS + "/usuario"
     return this.http.post(url, usuario)

@@ -19,4 +19,8 @@ export class SidebarComponent implements OnInit {
     this.usuario = this._usuarioService.usuario
   }
 
+  logout() {
+    this._usuarioService.logout()
+  }
+
 }

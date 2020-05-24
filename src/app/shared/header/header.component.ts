@@ -19,4 +19,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["/busqueda", termino])
   }
 
+  logout() {
+    this._usuarioService.logout()
+  }
+
 }
